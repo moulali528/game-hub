@@ -1,8 +1,7 @@
-import { useState } from 'preact/hooks'
 import { Grid, GridItem, Show } from '@chakra-ui/react'
+import NavBar from './Components/Navbar'
 
 export function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
@@ -10,7 +9,9 @@ export function App() {
         base: `"nav" "main"`,
         lg: `"nav nav" "asid main"`,
       }}>
-        <GridItem area={'nav'} bg={'coral'}>Nav</GridItem>
+        <GridItem area={'nav'} >
+          <NavBar />
+        </GridItem>
         <Show above='lg'>
           <GridItem area={'asid'} bg={'gold'}>Asid</GridItem>
         </Show>
