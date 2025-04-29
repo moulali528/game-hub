@@ -1,4 +1,4 @@
-import { HStack, Image } from '@chakra-ui/react'
+import { HStack, Image, Input } from '@chakra-ui/react'
 import React from 'react'
 import logo  from '../assets/logo.webp'
 const NavBar:React.FC = () => {
@@ -6,7 +6,7 @@ const NavBar:React.FC = () => {
     <div>
         <HStack>
             <Image src={logo} boxSize={'60px'}></Image>
-            <input type="search" />
+            <Input placeholder='Basic usage'/>
         </HStack>
     </div>
   )
