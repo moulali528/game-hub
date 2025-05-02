@@ -1,7 +1,8 @@
 import React from "react";
 import { Game } from "../interface/gameInterface";
-import { Card, CardBody, Heading } from "@chakra-ui/react";
+import { Card, CardBody, Heading, HStack } from "@chakra-ui/react";
 import PlatformIconList from "./PlatformIconList";
+import CriticScroe from "./CriticScroe";
 
 interface gameCardProps {
   game: Game;
@@ -13,9 +14,12 @@ const GameCard: React.FC<gameCardProps> = ({ game }) => {
       <img src={game.background_image} alt="Image" />
       <CardBody>
         <Heading fontSize={"xl"}>{game.name}</Heading>
-        <PlatformIconList
-          platforms={game.parent_platforms.map((p) => p.platform)}
-        />
+        <HStack justifyContent={"space-between"}>
+          <PlatformIconList
+            platforms={game.parent_platforms.map((p) => p.platform)}
+          />
+          <CriticScroe score={game.metacritic} />
+        </HStack>
       </CardBody>
     </Card>
   );
