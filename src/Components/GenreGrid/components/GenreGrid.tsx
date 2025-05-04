@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useGenre from "../../../hooks/useGenre";
 
 const GenreGrid: React.FC = () => {
-  const { genres, error, isLoading } = useGenre();
-  console.log("genres--", genres, isLoading, error);
+  const { data } = useGenre();
 
   return (
     <>
       <ul>
-        {genres.map((genre) => (
+        {data.map((genre) => (
           <li>{genre.name}</li>
         ))}
       </ul>

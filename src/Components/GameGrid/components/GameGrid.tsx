@@ -1,10 +1,10 @@
 import { Text, SimpleGrid } from "@chakra-ui/react";
 import GameCardSkeleton from "./GameCardSkeleton";
-import useGames from "../../../hooks/useGame";
 import GameCard from "./GameCard";
+import useGame from "../../../hooks/useGame";
 
 const GameGrid: React.FC = () => {
-  const { games, error, isLoading } = useGames();
+  const { data: games, error, isLoading } = useGame();
   const skeletons: number[] = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
   ];

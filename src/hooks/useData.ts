@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Genre } from "../interface/gameInterface";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
+import { data } from "framer-motion/client";
 
-interface FetchGenreResponse {
+interface FetchResponse<T> {
   count: number;
-  results: Genre[];
+  results: T[];
 }
 
-const useGenre: React.FC = () => {
-  const [genres, setGenrs] = useState<Genre[]>([]);
+const useData = <T>(endpoint: string) => {
+  const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -17,9 +18,9 @@ const useGenre: React.FC = () => {
     const controller = new AbortController();
     setIsLoading(true);
     apiClient
-      .get<FetchGenreResponse>("/genres", { signal: controller.signal })
+      .get<FetchResponse<T>>(endpoint, { signal: controller.signal })
       .then((res) => {
-        setGenrs(res.data.results);
+        setData(res.data.results);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -29,7 +30,7 @@ const useGenre: React.FC = () => {
     return () => controller.abort();
   }, []);
 
-  return { genres, error, isLoading };
+  return { data, error, isLoading };
 };
 
-export default useGenre;
+export default useData;
