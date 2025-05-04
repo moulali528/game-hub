@@ -1,9 +1,9 @@
 import React from "react";
-import { Game } from "../interface/gameInterface";
 import { Card, CardBody, Heading, HStack } from "@chakra-ui/react";
-import PlatformIconList from "./PlatformIconList";
+import PlatformIconList from "../../PlatformIconList";
+import getCroppedImageURL from "../../../services/image-url";
 import CriticScroe from "./CriticScroe";
-import getCroppedImageURL from "../services/image-url";
+import { Game } from "../../../interface/gameInterface";
 
 interface gameCardProps {
   game: Game;

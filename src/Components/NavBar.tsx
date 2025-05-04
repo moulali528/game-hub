@@ -1,7 +1,7 @@
 import { HStack, Image, Input } from "@chakra-ui/react";
 import React from "react";
 import logo from "../assets/logo.webp";
-import ColorModeSwitch from "./ColorModeSwitch";
+import ColorModeSwitch from "./GameGrid/components/ColorModeSwitch";
 const NavBar: React.FC = () => {
   return (
     <HStack justifyContent={"space-between"}>
