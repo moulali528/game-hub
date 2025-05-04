@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, Heading, HStack } from "@chakra-ui/react";
+import { Card, CardBody, Heading, HStack, Image } from "@chakra-ui/react";
 import PlatformIconList from "../../PlatformIconList";
 import getCroppedImageURL from "../../../services/image-url";
 import CriticScroe from "./CriticScroe";
@@ -11,8 +11,8 @@ interface gameCardProps {
 
 const GameCard: React.FC<gameCardProps> = ({ game }) => {
   return (
-    <Card width={"300px"} borderRadius={"10px"} overflow={"hidden"}>
-      <img src={getCroppedImageURL(game.background_image)} alt="Image" />
+    <Card borderRadius={"10px"} overflow={"hidden"}>
+      <Image src={getCroppedImageURL(game.background_image)} alt="Image" />
       <CardBody>
         <Heading fontSize={"xl"}>{game.name}</Heading>
         <HStack justifyContent={"space-between"}>
