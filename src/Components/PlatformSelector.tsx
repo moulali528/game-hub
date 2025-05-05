@@ -9,8 +9,17 @@ import {
 import React from "react";
 import { BsChevronDown } from "react-icons/bs";
 import usePlatform from "../hooks/usePlatform";
+import { Platform } from "../interface/gameInterface";
 
-const PlatformSelector: React.FC = () => {
+interface PlatformSelectorProps {
+  onSelectPlatform: (platform: Platform) => void;
+  selectedPlatform: Platform | null;
+}
+
+const PlatformSelector: React.FC<PlatformSelectorProps> = ({
+  onSelectPlatform,
+  selectedPlatform,
+}) => {
   const { data: platforms, error, isLoading } = usePlatform();
 
   if (error) return null;
@@ -21,11 +30,16 @@ const PlatformSelector: React.FC = () => {
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        Platform
+        {selectedPlatform?.name || "Platform"}
       </MenuButton>
       <MenuList>
         {platforms.map((platform) => (
-          <MenuItem key={platform.id}>{platform.name}</MenuItem>
+          <MenuItem
+            key={platform.id}
+            onClick={() => onSelectPlatform(platform)}
+          >
+            {platform.name}
+          </MenuItem>
         ))}
       </MenuList>
     </Menu>

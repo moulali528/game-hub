@@ -3,11 +3,14 @@ import NavBar from "./components/Navbar";
 import GameGrid from "./components/GameGrid/components/GameGrid";
 import GenreGrid from "./components/GenreGrid/components/GenreGrid";
 import { useState } from "preact/hooks";
-import { Genre } from "./interface/gameInterface";
+import { Genre, Platform } from "./interface/gameInterface";
 import PlatformSelector from "./components/PlatformSelector";
 
 export function App() {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
+    null
+  );
 
   return (
     <>
@@ -33,8 +36,14 @@ export function App() {
           </GridItem>
         </Show>
         <GridItem area={"main"}>
-          <PlatformSelector />
-          <GameGrid selectedGenre={selectedGenre} />
+          <PlatformSelector
+            selectedPlatform={selectedPlatform}
+            onSelectPlatform={(platfrom) => setSelectedPlatform(platfrom)}
+          />
+          <GameGrid
+            selectedPlatform={selectedPlatform}
+            selectedGenre={selectedGenre}
+          />
         </GridItem>
       </Grid>
     </>

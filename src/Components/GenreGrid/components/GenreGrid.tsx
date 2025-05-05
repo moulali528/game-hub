@@ -7,6 +7,7 @@ import {
   List,
   ListItem,
   Spinner,
+  Text,
 } from "@chakra-ui/react";
 import getCroppedImageURL from "../../../services/image-url";
 import { Genre } from "../../../interface/gameInterface";
@@ -26,28 +27,32 @@ const GenreGrid: React.FC<GenreGridProps> = ({
   if (error) return null;
   return (
     <List>
-      {genres.map((genre) => (
-        <ListItem paddingY={"5px"}>
-          <HStack>
-            <Image
-              src={getCroppedImageURL(genre.image_background)}
-              boxSize={"35px"}
-              borderRadius={8}
-            />
-            <Button
-              variant={"link"}
-              fontWeight={selectedGenre?.id == genre.id ? "bold" : "normal"}
-              key={genre.id}
-              fontSize={"lg"}
-              onClick={() => {
-                onSelectGenre(genre);
-              }}
-            >
-              {genre.name}
-            </Button>
-          </HStack>
-        </ListItem>
-      ))}
+      {genres.length > 0 ? (
+        genres.map((genre) => (
+          <ListItem paddingY={"5px"}>
+            <HStack>
+              <Image
+                src={getCroppedImageURL(genre.image_background)}
+                boxSize={"35px"}
+                borderRadius={8}
+              />
+              <Button
+                variant={"link"}
+                fontWeight={selectedGenre?.id == genre.id ? "bold" : "normal"}
+                key={genre.id}
+                fontSize={"lg"}
+                onClick={() => {
+                  onSelectGenre(genre);
+                }}
+              >
+                {genre.name}
+              </Button>
+            </HStack>
+          </ListItem>
+        ))
+      ) : (
+        <Text> No Games Avaiable</Text>
+      )}
     </List>
   );
 };
