@@ -13,9 +13,13 @@ import { Genre } from "../../../interface/gameInterface";
 
 interface GenreGridProps {
   onSelectGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-const GenreGrid: React.FC<GenreGridProps> = ({ onSelectGenre }) => {
+const GenreGrid: React.FC<GenreGridProps> = ({
+  selectedGenre,
+  onSelectGenre,
+}) => {
   const { data: genres, isLoading, error } = useGenre();
 
   if (isLoading) return <Spinner />;
@@ -32,6 +36,7 @@ const GenreGrid: React.FC<GenreGridProps> = ({ onSelectGenre }) => {
             />
             <Button
               variant={"link"}
+              fontWeight={selectedGenre?.id == genre.id ? "bold" : "normal"}
               key={genre.id}
               fontSize={"lg"}
               onClick={() => {
