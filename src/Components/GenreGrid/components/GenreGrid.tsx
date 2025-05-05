@@ -1,16 +1,28 @@
 import React from "react";
 import useGenre from "../../../hooks/useGenre";
-import { HStack, Image, List, ListItem, Spinner, Text } from "@chakra-ui/react";
+import {
+  Button,
+  HStack,
+  Image,
+  List,
+  ListItem,
+  Spinner,
+} from "@chakra-ui/react";
 import getCroppedImageURL from "../../../services/image-url";
+import { Genre } from "../../../interface/gameInterface";
 
-const GenreGrid: React.FC = () => {
-  const { data, isLoading, error } = useGenre();
+interface GenreGridProps {
+  onSelectGenre: (genre: Genre) => void;
+}
+
+const GenreGrid: React.FC<GenreGridProps> = ({ onSelectGenre }) => {
+  const { data: genres, isLoading, error } = useGenre();
 
   if (isLoading) return <Spinner />;
   if (error) return null;
   return (
     <List>
-      {data.map((genre) => (
+      {genres.map((genre) => (
         <ListItem paddingY={"5px"}>
           <HStack>
             <Image
@@ -18,9 +30,16 @@ const GenreGrid: React.FC = () => {
               boxSize={"35px"}
               borderRadius={8}
             />
-            <Text key={genre.id} fontSize={"lg"}>
+            <Button
+              variant={"link"}
+              key={genre.id}
+              fontSize={"lg"}
+              onClick={() => {
+                onSelectGenre(genre);
+              }}
+            >
               {genre.name}
-            </Text>
+            </Button>
           </HStack>
         </ListItem>
       ))}
