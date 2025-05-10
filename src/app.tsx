@@ -5,16 +5,11 @@ import GenreGrid from "./components/GenreGrid/components/GenreGrid";
 import { useState } from "preact/hooks";
 import { Genre, odrder_by, Platform } from "./interface/gameInterface";
 import PlatformSelector from "./components/PlatformSelector";
-import SortSelector from "./SortSelector";
+import SortSelector from "./components/SortSelector";
 import { GameQuery } from "./interface/gameInterface";
 
 export function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
-  // const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-  // const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
-  //   null
-  // );
-  // const [selectedOrder, setSelectedOrder] = useState<string>("");
 
   return (
     <>
@@ -48,6 +43,7 @@ export function App() {
               }
             />
             <SortSelector
+              selectedSortOrder={gameQuery.selectedOrder}
               onSelectSortOrder={(selectedOrder) =>
                 setGameQuery({ ...gameQuery, selectedOrder })
               }

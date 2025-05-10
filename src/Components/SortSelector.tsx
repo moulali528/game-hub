@@ -1,14 +1,16 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import React from "react";
 import { BsChevronDown } from "react-icons/bs";
-import { odrder_by } from "./interface/gameInterface";
-import { Dispatch, StateUpdater } from "preact/hooks";
 
 interface SortSelectorProps {
+  selectedSortOrder: string;
   onSelectSortOrder: (selectedOrder: string) => void;
 }
 
-const SortSelector: React.FC<SortSelectorProps> = ({ onSelectSortOrder }) => {
+const SortSelector: React.FC<SortSelectorProps> = ({
+  selectedSortOrder,
+  onSelectSortOrder,
+}) => {
   const sortOrders = [
     { value: "", label: "Revelence" },
     { value: "added", label: "Date added" },
@@ -16,10 +18,15 @@ const SortSelector: React.FC<SortSelectorProps> = ({ onSelectSortOrder }) => {
     { value: "released", label: "Release Date" },
     { value: "rating", label: "Average Rating" },
   ];
+
+  const currentSortValue = sortOrders.find(
+    (order) => order.value === selectedSortOrder
+  );
+  console.log("currentSortValue---", selectedSortOrder);
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        Order by: Releavence
+        Order by: {currentSortValue?.label || "Relevance"}
       </MenuButton>
       <MenuList>
         {sortOrders.map((sortOrder) => (
