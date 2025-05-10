@@ -1,9 +1,11 @@
-import { render } from 'preact'
-import { App } from './app.tsx'
-import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
-import theme from './theam.ts'
+import ReactDOM from "react-dom/client";
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+import { App } from "./app";
+import theme from "./theam";
 
-
-render(
-<ChakraProvider theme={theme}>
-    <ColorModeScript initialColorMode={theme.config.initialColorMode}/><App /> </ChakraProvider>, document.getElementById('app')!)
+ReactDOM.createRoot(document.getElementById("app")!).render(
+  <ChakraProvider theme={theme}>
+    <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+    <App />
+  </ChakraProvider>
+);

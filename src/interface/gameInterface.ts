@@ -22,3 +22,13 @@ export interface Platform {
   id: number;
   name: string;
 }
+
+export interface odrder_by {
+  name: string;
+}
+
+export interface GameQuery {
+  platform: Platform | null;
+  genre: Genre | null;
+  selectedOrder: string;
+}

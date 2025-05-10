@@ -1,19 +1,17 @@
-import { Game, Genre, Platform } from "../interface/gameInterface";
+import { Game, GameQuery, Genre, Platform } from "../interface/gameInterface";
 import useData from "./useData";
 
-const useGame = (
-  selectedGenre: Genre | null,
-  selectedPlatform: Platform | null
-) =>
+const useGame = (gameQuery: GameQuery) =>
   useData<Game>(
     "/games",
     {
       params: {
-        genres: selectedGenre?.id,
-        platforms: selectedPlatform?.id,
+        genres: gameQuery.genre?.id,
+        platforms: gameQuery.platform?.id,
+        ordering: gameQuery.selectedOrder,
       },
     },
-    [selectedGenre?.id, selectedPlatform?.id]
+    [gameQuery]
   );
 
 export default useGame;
