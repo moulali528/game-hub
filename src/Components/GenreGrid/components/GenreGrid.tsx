@@ -27,8 +27,8 @@ const GenreGrid: React.FC<GenreGridProps> = ({
   if (error) return null;
   return (
     <List>
-      {genres.length > 0 ? (
-        genres.map((genre) => (
+      {genres?.results?.length > 0 ? (
+        genres?.results.map((genre) => (
           <ListItem paddingY={"5px"}>
             <HStack>
               <Image
